@@ -1,0 +1,14 @@
+package com.eventdriven.orderservice.repository;
+
+import com.eventdriven.orderservice.domain.OutboxEvent;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface OutboxRepository extends JpaRepository<OutboxEvent, UUID> {
+
+    public List<OutboxEvent> findByStatus(String status);
+
+}
