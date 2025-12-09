@@ -48,6 +48,7 @@ public class OutboxEvent {
         }
     }
 
+
     public static OutboxEvent of(UUID aggregateId, String type, String payload){
 
         OutboxEvent event = new OutboxEvent();

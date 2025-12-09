@@ -35,7 +35,7 @@ public class Order {
     @JoinColumn(name = "order_id")
     private List<OrderItem> items;
 
-
+    @PrePersist
     public void prePersist(){
 
         if(id == null) {
