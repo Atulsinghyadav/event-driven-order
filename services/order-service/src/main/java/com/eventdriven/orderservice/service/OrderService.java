@@ -42,9 +42,9 @@ public class OrderService {
 
         List<OrderItem> items = req.getItems().stream().map(i -> {
             OrderItem it = new OrderItem();
-            it.getItems().setSku(i.getSku());
-            it.getItems().setQuantity(i.getQuantity());
-            it.getItems().setUnitPrice(i.getUnitPrice());
+            it.setSku(i.getSku());
+            it.setQuantity(i.getQuantity());
+            it.setUnitPrice(i.getUnitPrice());
             return it;
         }).collect(Collectors.toList());
 
@@ -80,9 +80,9 @@ public class OrderService {
         payload.put("currency", saved.getCurrency());
         payload.put("items", Optional.ofNullable(saved.getItems()).orElse(Collections.emptyList()).stream().map(it -> {
             Map<String, Object> m = new HashMap<>();
-            m.put("sku", it.getItems().getSku());
-            m.put("quantity", it.getItems().getQuantity());
-            m.put("unitPrice", it.getItems().getUnitPrice());
+            m.put("sku", it.getSku());
+            m.put("quantity", it.getQuantity());
+            m.put("unitPrice", it.getUnitPrice());
             return m;
         }).collect(Collectors.toList()));
 
