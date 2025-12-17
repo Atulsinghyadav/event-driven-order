@@ -2,6 +2,7 @@ package com.eventdriven.orderservice.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,8 @@ public class OutboxEvent {
 
     private Instant createdAt;
 
-
-    public void PrePersist(){
+    @PrePersist
+    public void prePersist(){
 
         if(id == null){
             id = UUID.randomUUID();

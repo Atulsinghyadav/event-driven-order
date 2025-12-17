@@ -1,6 +1,7 @@
 package com.eventdriven.orderservice.api;
 
-import com.eventdriven.orderservice.dto.ItemList;
+//import com.eventdriven.orderservice.domain.OrderItem;
+import com.eventdriven.orderservice.dto.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class CreateOrderRequest {
     private String customerId;
     private String currency;
     private BigDecimal totalAmount;
-    private List<ItemList> items;
+    private List<Item> items;
+
 
 }
