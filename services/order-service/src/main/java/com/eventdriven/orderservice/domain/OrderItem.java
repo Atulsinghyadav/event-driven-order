@@ -2,13 +2,15 @@ package com.eventdriven.orderservice.domain;
 
 import com.eventdriven.orderservice.dto.Item;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.kafka.common.protocol.types.Field;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -28,6 +30,10 @@ public class OrderItem {
     private Integer quantity;
     private BigDecimal unitPrice;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
     @PrePersist
     public void PrePersist(){
 
@@ -35,6 +41,7 @@ public class OrderItem {
             id = UUID.randomUUID();
         }
     }
+
 
     public static OrderItem from(Item dto){
         OrderItem it = new OrderItem();

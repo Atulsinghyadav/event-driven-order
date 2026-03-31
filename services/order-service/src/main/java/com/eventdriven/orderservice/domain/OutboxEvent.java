@@ -33,6 +33,14 @@ public class OutboxEvent {
 
     private Instant createdAt;
 
+    private Integer attemptCount;
+
+    private String lastError;
+
+    private Instant nextRetryAt;
+
+    private Instant publishedAt;
+
     @PrePersist
     public void prePersist(){
 
@@ -46,6 +54,10 @@ public class OutboxEvent {
 
         if(createdAt == null){
             createdAt = Instant.now();
+        }
+
+        if(attemptCount == null){
+            attemptCount = 0;
         }
     }
 

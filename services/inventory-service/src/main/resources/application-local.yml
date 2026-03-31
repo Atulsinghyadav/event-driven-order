@@ -1,9 +1,9 @@
 spring:
   application:
-    name: order.java-service
+    name: inventory-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/postgres
+    url: jdbc:postgresql://localhost:5434/inventory_db
     username: postgres
     password: postgres
 
@@ -17,16 +17,15 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:29092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
-      group-id: order.java-service-group
+      group-id: inventory-service-group-debug-2
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
+
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:

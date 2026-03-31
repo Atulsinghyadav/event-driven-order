@@ -32,8 +32,7 @@ public class Order {
 
     private Instant createdAt;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
     @PrePersist
@@ -48,5 +47,10 @@ public class Order {
         if(status == null){
             status = "PENDING";
         }
+    }
+
+    public void addItem(OrderItem item) {
+        item.setOrder(this);
+        this.items.add(item);
     }
 }

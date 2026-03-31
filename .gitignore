@@ -1,0 +1,21 @@
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Maven / Java build output
+target/
+out/
+
+# Logs
+*.log
+
+# OS / temp
+*.swp
+
+*.iml

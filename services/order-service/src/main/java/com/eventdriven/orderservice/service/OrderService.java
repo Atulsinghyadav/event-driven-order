@@ -48,7 +48,7 @@ public class OrderService {
             return it;
         }).collect(Collectors.toList());
 
-        order.setItems(items);
+        items.forEach(order::addItem);
 
         // save order (prePersist will set id + createdAt)
         Order saved = orderRepository.save(order);
