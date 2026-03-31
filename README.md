@@ -55,21 +55,26 @@ Responsible for:
 docker compose -f docker/docker-compose.yml up -d
 ```
 
-
 ### 2. Run order-service
+```bash
 cd services/order-service
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
-
+```
 
 ### 3. Run inventory-service
+```bash
 cd services/inventory-service
-./services/order-service/mvnw -f services/inventory-service/pom.xml spring-boot:run -Dspring-boot.run.profiles=local
+../order-service/mvnw -f pom.xml spring-boot:run -Dspring-boot.run.profiles=local
+```
 
 
-### Sample API Usage
+## Sample API Usage
+### Create Order
 
-POST http://localhost:8080/orders
+`POST http://localhost:8080/orders`
 
+```json
+ 
 {
   "customerId": "cust-101",
   "currency": "INR",
@@ -82,14 +87,22 @@ POST http://localhost:8080/orders
     }
   ]
 }
+```
 
-Get Inventory Reservations
-GET http://localhost:8081/inventory/reservations/{orderId}
 
-Reliability Features
-Transactional outbox pattern
-Retry-aware outbox publishing
-Idempotent consumer using processed_events
-Separate DB ownership for each service
-Flyway-managed schema versioning
+### Get Inventory Reservations
+
+`GET http://localhost:8081/inventory/reservations/{orderId}`
+
+
+## Reliability Features
+- Transactional outbox pattern
+- Retry-aware outbox publishing
+- Idempotent consumer using `processed_events`
+- Separate DB ownership for each service
+- Flyway-managed schema versioning
+
+
+## Key Challenge Solved
+Configured Kafka correctly for a single-broker local setup so producer and consumer group coordination worked reliably during end-to-end event processing.
 
